@@ -1,9 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 0;
-    padding: 20px;
     background-color: #f8f9fa;
+    padding: 20px;
 }
 
 h1 {
@@ -23,6 +22,9 @@ h1 {
     height: 100px;
     border: 1px solid #ccc;
     background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .piece img {
