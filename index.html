@@ -3,14 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Puzzle</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Linking the CSS file -->
+    <title>Puzzle Game</title>
+    <style>
+        #puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            width: 400px;
+            margin: auto;
+        }
+        .piece {
+            width: 100%;
+            padding-top: 100%;
+            background-color: #ddd;
+            position: relative;
+            border: 1px solid #aaa;
+        }
+        .piece img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
-    <h1 style="text-align: center;">Interactive Puzzle</h1>
+    <h1>Interactive Puzzle</h1>
     <div id="puzzle-container">
-        <!-- Puzzle pieces will be dynamically added here -->
+        <!-- Puzzle pieces will be loaded here dynamically -->
     </div>
-    <script src="script.js"></script> <!-- Linking the JavaScript file -->
+    <script>
+        const puzzleData = {
+            1: { scanned: false, img: '1.png' },
+            2: { scanned: false, img: '2.png' },
+            3: { scanned: false, img: '3.png' },
+            4: { scanned: false, img: '4.png' },
+            5: { scanned: false, img: '5.png' },
+            6: { scanned: false, img: '6.png' },
+            7: { scanned: false, img: '7.png' },
+            8: { scanned: false, img: '8.png' },
+            9: { scanned: false, img: '9.png' },
+            10: { scanned: false, img: '10.png' },
+            11: { scanned: false, img: '11.png' },
+            12: { scanned: false, img: '12.png' },
+            13: { scanned: false, img: '13.png' },
+            14: { scanned: false, img: '14.png' },
+            15: { scanned: false, img: '15.png' },
+            16: { scanned: false, img: '16.png' }
+        };
+
+        function renderPuzzle() {
+            const container = document.getElementById('puzzle-container');
+            container.innerHTML = '';
+
+            for (let id = 1; id <= 16; id++) {
+                const piece = document.createElement('div');
+                piece.className = 'piece';
+
+                if (puzzleData[id].scanned) {
+                    piece.innerHTML = `<img src="${puzzleData[id].img}" alt="Puzzle Piece">`;
+                }
+
+                container.appendChild(piece);
+            }
+        }
+
+        function revealPiece(pieceId) {
+            if (puzzleData[pieceId]) {
+                puzzleData[pieceId].scanned = true;
+                renderPuzzle();
+            } else {
+                alert('Invalid piece ID!');
+            }
+        }
+
+        // Read URL parameters for the piece ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const pieceId = urlParams.get('id');
+
+        if (pieceId) {
+            revealPiece(pieceId);
+        } else {
+            renderPuzzle();
+        }
+    </script>
 </body>
 </html>
