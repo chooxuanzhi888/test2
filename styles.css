@@ -1,0 +1,28 @@
+/* Puzzle container grid */
+#puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 5px; /* Spacing between pieces */
+    width: 400px; /* Total width of the puzzle area */
+    margin: auto;
+    margin-top: 50px;
+}
+
+/* Individual puzzle pieces */
+.piece {
+    width: 100%; /* Each piece takes full width of its cell */
+    padding-top: 100%; /* Maintain a square shape */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+/* Style the image within each piece */
+.piece img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the piece perfectly */
+}
