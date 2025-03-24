@@ -3,91 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzle Game</title>
-    <style>
-        #puzzle-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            width: 400px;
-            margin: auto;
-        }
-        .piece {
-            width: 100%;
-            padding-top: 100%;
-            background-color: #ddd;
-            position: relative;
-            border: 1px solid #aaa;
-        }
-        .piece img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+    <title>Event Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Interactive Puzzle</h1>
-    <div id="puzzle-container">
-        <!-- Puzzle pieces will be loaded here dynamically -->
+    <div class="puzzle" id="puzzleGrid">
+        <!-- 16 empty puzzle pieces -->
+        <div class="piece" id="1"></div>
+        <div class="piece" id="2"></div>
+        <div class="piece" id="3"></div>
+        <div class="piece" id="4"></div>
+        <div class="piece" id="5"></div>
+        <div class="piece" id="6"></div>
+        <div class="piece" id="7"></div>
+        <div class="piece" id="8"></div>
+        <div class="piece" id="9"></div>
+        <div class="piece" id="10"></div>
+        <div class="piece" id="11"></div>
+        <div class="piece" id="12"></div>
+        <div class="piece" id="13"></div>
+        <div class="piece" id="14"></div>
+        <div class="piece" id="15"></div>
+        <div class="piece" id="16"></div>
     </div>
-    <script>
-        const puzzleData = {
-            1: { scanned: false, img: '1.png' },
-            2: { scanned: false, img: '2.png' },
-            3: { scanned: false, img: '3.png' },
-            4: { scanned: false, img: '4.png' },
-            5: { scanned: false, img: '5.png' },
-            6: { scanned: false, img: '6.png' },
-            7: { scanned: false, img: '7.png' },
-            8: { scanned: false, img: '8.png' },
-            9: { scanned: false, img: '9.png' },
-            10: { scanned: false, img: '10.png' },
-            11: { scanned: false, img: '11.png' },
-            12: { scanned: false, img: '12.png' },
-            13: { scanned: false, img: '13.png' },
-            14: { scanned: false, img: '14.png' },
-            15: { scanned: false, img: '15.png' },
-            16: { scanned: false, img: '16.png' }
-        };
-
-        function renderPuzzle() {
-            const container = document.getElementById('puzzle-container');
-            container.innerHTML = '';
-
-            for (let id = 1; id <= 16; id++) {
-                const piece = document.createElement('div');
-                piece.className = 'piece';
-
-                if (puzzleData[id].scanned) {
-                    piece.innerHTML = `<img src="${puzzleData[id].img}" alt="Puzzle Piece">`;
-                }
-
-                container.appendChild(piece);
-            }
-        }
-
-        function revealPiece(pieceId) {
-            if (puzzleData[pieceId]) {
-                puzzleData[pieceId].scanned = true;
-                renderPuzzle();
-            } else {
-                alert('Invalid piece ID!');
-            }
-        }
-
-        // Read URL parameters for the piece ID
-        const urlParams = new URLSearchParams(window.location.search);
-        const pieceId = urlParams.get('id');
-
-        if (pieceId) {
-            revealPiece(pieceId);
-        } else {
-            renderPuzzle();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
